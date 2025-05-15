@@ -1,17 +1,9 @@
-import { HttpResponse, HttpResponseList } from '@/shared/models/http.model';
+import { HttpResponse } from '@/shared/models/http.model';
 
-export const ok = <T = unknown>(data?: T): HttpResponse<T> => ({
+export const ok = <T = unknown>(data?: T, count?: number): HttpResponse<T> => ({
   statusCode: 200,
   data,
-});
-
-export const okList = <T = unknown[]>(
-  items: T,
-  count?: number
-): HttpResponseList<T> => ({
-  statusCode: 200,
-  items,
-  count: count || 0,
+  count,
 });
 
 export const noContent = <T = unknown>(): HttpResponse<T> => ({
