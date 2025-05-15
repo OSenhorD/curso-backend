@@ -50,13 +50,16 @@ POST {{ url }}{{ api }}/database/course/{{ course_id }}/enroll HTTP/1.1
 Content-type: application/json
 
 ###
+# @name students
 
 GET {{ url }}{{ api }}/database/student HTTP/1.1
 Content-type: application/json
 
 ###
 
-GET {{ url }}{{ api }}/database/student/id HTTP/1.1
+@student_id = {{ students.response.body.data[0].id }}
+
+GET {{ url }}{{ api }}/database/student/{{ student_id }} HTTP/1.1
 Content-type: application/json
 
 ###
@@ -64,12 +67,24 @@ Content-type: application/json
 POST {{ url }}{{ api }}/database/student HTTP/1.1
 Content-type: application/json
 
+{
+  "nome": "Aluno 10",
+  "email": "aluno10@gmail.com",
+  "dataNascimento": "2010-01-01"
+}
+
 ###
 
-PUT {{ url }}{{ api }}/database/student/id HTTP/1.1
+PUT {{ url }}{{ api }}/database/student/{{ student_id }} HTTP/1.1
 Content-type: application/json
+
+{
+  "nome": "Curso 20",
+  "email": "aluno_20@gmail.com",
+  "dataNascimento": "2010-01-01"
+}
 
 ### Lista de curso do aluno
 
-GET {{ url }}{{ api }}/database/student/id/enroll HTTP/1.1
+GET {{ url }}{{ api }}/database/student/{{ student_id }}/enroll HTTP/1.1
 Content-type: application/json

@@ -1,9 +1,11 @@
 import { Router } from 'express';
 
-import databaseCompanyRoutes from '@/shared/infra/http/routes/database/course-routes';
+import databaseCourseRoutes from '@/shared/infra/http/routes/database/course-routes';
+import databaseStudentRoutes from '@/shared/infra/http/routes/database/student-routes';
 
 const databaseRoutes = Router();
 
-databaseRoutes.use('/course', databaseCompanyRoutes);
+databaseRoutes.use('/course', databaseCourseRoutes);
+databaseRoutes.use('/student', databaseStudentRoutes);
 
 export default databaseRoutes;
