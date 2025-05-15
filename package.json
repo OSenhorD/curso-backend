@@ -7,6 +7,7 @@
   "main": "./dist/shared/infra/http/server.js",
   "description": "Backend da aplicação Ever Tickets",
   "engines": {
+    "npm": "10.9.2",
     "node": "22.13.1"
   },
   "packageManager": "npm@10.9.2",

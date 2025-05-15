@@ -7,6 +7,16 @@ Aplicação teste para demonstrar conhecimento básicos
 - Banco de dados PostegreSQL
 - ORM TypeORM.
 
+## Instalar e executar projeto
+
+```yml
+$ npm i
+$ docker compose up -d
+$ npm run typeorm migration:run
+$ npm run seed:seeder
+$ npm run dev
+```
+
 ## Extensões sugeridas
 
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
