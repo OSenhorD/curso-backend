@@ -11,7 +11,7 @@ export class CourseCreateController {
 
     const result = await container.resolve(CourseCreateUseCase).execute({
       nome: body?.nome || '',
-      descricao: body?.descricao || '',
+      descricao: body?.descricao,
     });
 
     response.status(result.statusCode).json(result);

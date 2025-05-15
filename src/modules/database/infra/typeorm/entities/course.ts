@@ -14,7 +14,7 @@ export class Course {
   @Column({ name: 'nome' })
   nome!: string;
 
-  @Column({ name: 'descricao' })
+  @Column({ name: 'descricao', nullable: true })
   descricao!: string;
 
   @CreateDateColumn({ name: 'created_at', select: false })

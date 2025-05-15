@@ -12,7 +12,7 @@ export class CourseUpdateController {
 
     const result = await container.resolve(CourseUpdateUseCase).execute(id, {
       nome: body?.nome || '',
-      descricao: body?.descricao || '',
+      descricao: body?.descricao,
     });
 
     response.status(result.statusCode).json(result);

@@ -16,7 +16,7 @@ export class CreateCourses1677089029000 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           { name: 'nome', type: 'varchar', isNullable: false },
-          { name: 'descricao', type: 'varchar', isNullable: false },
+          { name: 'descricao', type: 'varchar', isNullable: true },
           { name: 'created_at', type: 'timestamp', default: 'now()' },
           { name: 'updated_at', type: 'timestamp', default: 'now()' },
         ],
