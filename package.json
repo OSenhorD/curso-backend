@@ -1,0 +1,48 @@
+{
+  "name": "curso-backend",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "David Marques",
+  "main": "./dist/shared/infra/http/server.js",
+  "description": "Backend da aplicação Ever Tickets",
+  "engines": {
+    "node": "22.13.1"
+  },
+  "packageManager": "npm@10.9.2",
+  "scripts": {
+    "build": "rm -rf ./dist; ./node_modules/.bin/tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "start": "npx ts-node -r tsconfig-paths/register dist/shared/infra/http/server.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js --dataSource src/shared/infra/typeorm/index.ts",
+    "seed:seeder": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed",
+    "test": "NODE_ENV=test --runInBand --detectOpenHandles"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0",
+    "typeorm": "^0.3.24",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.26.0",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "tscpaths": "^0.0.9",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  }
+}
