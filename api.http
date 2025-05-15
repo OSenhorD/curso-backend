@@ -6,22 +6,65 @@
 GET {{ url }} HTTP/1.1
 Content-type: application/json
 
-### Lista de Alunos
+###
+# @name courses
+
+GET {{ url }}{{ api }}/database/course HTTP/1.1
+Content-type: application/json
+
+###
+
+@course_id = {{ courses.response.body.data[0].id }}
+
+GET {{ url }}{{ api }}/database/course/{{ course_id }} HTTP/1.1
+Content-type: application/json
+
+###
+
+POST {{ url }}{{ api }}/database/course HTTP/1.1
+Content-type: application/json
+
+{
+  "nome": "Curso 1",
+  "descricao": "Descricao 1"
+}
+
+###
+
+PUT {{ url }}{{ api }}/database/course/{{ course_id }} HTTP/1.1
+Content-type: application/json
+
+{
+  "nome": "Curso Alterado",
+  "descricao": "Descricao 1"
+}
+
+### Lista de alunos no curso
+
+GET {{ url }}{{ api }}/database/course/{{ course_id }}/enroll HTTP/1.1
+Content-type: application/json
+
+### Matricular aluno no curso
+
+POST {{ url }}{{ api }}/database/course/{{ course_id }}/enroll HTTP/1.1
+Content-type: application/json
+
+###
 
 GET {{ url }}{{ api }}/database/student HTTP/1.1
 Content-type: application/json
 
-### Lista de Alunos
+###
 
 GET {{ url }}{{ api }}/database/student/id HTTP/1.1
 Content-type: application/json
 
-### Cadastro de aluno
+###
 
 POST {{ url }}{{ api }}/database/student HTTP/1.1
 Content-type: application/json
 
-### Edição do aluno
+###
 
 PUT {{ url }}{{ api }}/database/student/id HTTP/1.1
 Content-type: application/json
@@ -29,29 +72,4 @@ Content-type: application/json
 ### Lista de curso do aluno
 
 GET {{ url }}{{ api }}/database/student/id/enroll HTTP/1.1
-Content-type: application/json
-
-### Lista de cursos
-
-GET {{ url }}{{ api }}/database/course HTTP/1.1
-Content-type: application/json
-
-### Cadastro de curso
-
-POST {{ url }}{{ api }}/database/course HTTP/1.1
-Content-type: application/json
-
-### Edição do curso
-
-PUT {{ url }}{{ api }}/database/course/id HTTP/1.1
-Content-type: application/json
-
-### Lista de alunos no curso
-
-GET {{ url }}{{ api }}/database/course/id/enroll HTTP/1.1
-Content-type: application/json
-
-### Matricular aluno no curso
-
-POST {{ url }}{{ api }}/database/course/id/enroll HTTP/1.1
 Content-type: application/json
