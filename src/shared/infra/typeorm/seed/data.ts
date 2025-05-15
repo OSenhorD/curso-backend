@@ -3,6 +3,8 @@ import { startConnection } from '@/shared/infra/typeorm';
 const truncate = async () => {
   const connection = await startConnection();
 
+  await connection.query(`TRUNCATE registrations CASCADE`);
+  await connection.query(`TRUNCATE students CASCADE`);
   await connection.query(`TRUNCATE courses CASCADE`);
 };
 
@@ -34,6 +36,20 @@ const data = async () => {
       `
     )
     .then(() => console.log('students ok'));
+
+  await connection
+    .query(
+      `
+      INSERT INTO registrations (
+        curso_id, aluno_id
+      ) VALUES
+        ('ecdbec25-ca70-4e53-86e1-6fa263be551f', 'e5ee568e-8a62-4c7e-b816-601a70e8a503')
+        , ('a5821028-fae2-4814-a843-5a26e97e982e', 'e5ee568e-8a62-4c7e-b816-601a70e8a503')
+        , ('7002b433-0529-429e-be6e-857a99035d9e', 'e5ee568e-8a62-4c7e-b816-601a70e8a503')
+        , ('7002b433-0529-429e-be6e-857a99035d9e', '6a73ff53-5746-4c00-b46a-b38eed6e5277')
+      `
+    )
+    .then(() => console.log('registrations ok'));
 };
 
 export const seedData = async () => {
