@@ -4,8 +4,9 @@ import { Registration } from '@/modules/database/infra/typeorm/entities/registra
 import { IRegistrationRepository } from '@/modules/database/repositories/i-registration-repository';
 
 import {
+  RegistrationCourse,
   RegistrationDTO,
-  RegistrationGet,
+  RegistrationStudent,
 } from '@/modules/database/dtos/i-registration-dto';
 
 import AppDataSource from '@/shared/infra/typeorm';
@@ -18,16 +19,14 @@ export class RegistrationRepository implements IRegistrationRepository {
   listByCourseId = async (
     courseId: string,
     { page, pageSize, search }: Search
-  ): Promise<Result<RegistrationGet[]>> => {
+  ): Promise<Result<RegistrationCourse[]>> => {
     try {
       let query = this._repository
         .createQueryBuilder('registration')
         .select([
           `registration.id as "id"`,
-          `course.id as "cursoId"`,
-          `course.nome as "cursoNome"`,
-          `student.id as "alunoId"`,
-          `student.nome as "alunoNome"`,
+          `student.id as "alunoNome"`,
+          `student.nome as "alunoEmail"`,
           `registration.dataMatricula as "dataMatricula"`,
         ])
         .leftJoin('courses', 'course', 'course.id = registration.cursoId')
@@ -64,16 +63,15 @@ export class RegistrationRepository implements IRegistrationRepository {
   listByStudentId = async (
     studentId: string,
     { page, pageSize, search }: Search
-  ): Promise<Result<RegistrationGet[]>> => {
+  ): Promise<Result<RegistrationStudent[]>> => {
     try {
       let query = this._repository
         .createQueryBuilder('registration')
         .select([
           `registration.id as "id"`,
-          `course.id as "cursoId"`,
-          `course.nome as "cursoNome"`,
-          `student.id as "alunoId"`,
-          `student.nome as "alunoNome"`,
+          `course.id as "courseId"`,
+          `course.nome as "courseNome"`,
+          `course.descricao as "courseDescricao"`,
           `registration.dataMatricula as "dataMatricula"`,
         ])
         .leftJoin('courses', 'course', 'course.id = registration.cursoId')

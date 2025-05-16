@@ -4,16 +4,16 @@ import { HttpResponse } from '@/shared/models/http.model';
 import { notFound, ok, serverError } from '@/shared/helpers/http';
 import { Search } from '@/shared/models/shared.model';
 
-import { ICourseRepository } from '@/modules/database/repositories/i-course-repository';
+import { IStudentRepository } from '@/modules/database/repositories/i-student-repository';
 
-import { RegistrationCourse } from '@/modules/database/dtos/i-registration-dto';
+import { RegistrationStudent } from '@/modules/database/dtos/i-registration-dto';
 import { IRegistrationRepository } from '@/modules/database/repositories/i-registration-repository';
 
 @injectable()
-export class CourseEnrollListUseCase {
+export class StudentEnrollListUseCase {
   constructor(
-    @inject('CourseRepository')
-    private readonly _courseRepository: ICourseRepository,
+    @inject('StudentRepository')
+    private readonly _studentRepository: IStudentRepository,
     @inject('RegistrationRepository')
     private readonly _registrationRepository: IRegistrationRepository
   ) {}
@@ -21,8 +21,8 @@ export class CourseEnrollListUseCase {
   execute = async (
     id: string,
     search: Search
-  ): Promise<HttpResponse<RegistrationCourse[]>> => {
-    const item = await this._courseRepository.get(id);
+  ): Promise<HttpResponse<RegistrationStudent[]>> => {
+    const item = await this._studentRepository.get(id);
     if (item?.error) {
       return serverError(item?.error);
     }
@@ -31,7 +31,10 @@ export class CourseEnrollListUseCase {
       return notFound(item?.error);
     }
 
-    const items = await this._registrationRepository.listByCourseId(id, search);
+    const items = await this._registrationRepository.listByStudentId(
+      id,
+      search
+    );
     if (items?.error || !items?.data) {
       return serverError(items?.error);
     }

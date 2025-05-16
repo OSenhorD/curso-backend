@@ -5,15 +5,16 @@ export type RegistrationDTO = {
   dataMatricula: string;
 };
 
-export type RegistrationGet = {
+export type RegistrationCourse = {
   id: string;
-  cursoId: string;
-  cursoNome: string;
   alunoNome: string;
   alunoEmail: string;
   dataMatricula: string;
 };
 
-export type RegistrationCreate = {
-  alunoId: string;
+export type RegistrationStudent = {
+  id: string;
+  courseId: string;
+  courseNome: string;
+  courseDescricao: string;
 };

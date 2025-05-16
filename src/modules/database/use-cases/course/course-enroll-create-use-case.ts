@@ -7,9 +7,11 @@ import { ICourseRepository } from '@/modules/database/repositories/i-course-repo
 
 import { IStudentRepository } from '@/modules/database/repositories/i-student-repository';
 
-import { RegistrationCreate } from '@/modules/database/dtos/i-registration-dto';
-
 import { IRegistrationRepository } from '@/modules/database/repositories/i-registration-repository';
+
+type Body = {
+  alunoId: string;
+};
 
 @injectable()
 export class CourseEnrollCreateUseCase {
@@ -22,10 +24,7 @@ export class CourseEnrollCreateUseCase {
     private readonly _registrationRepository: IRegistrationRepository
   ) {}
 
-  execute = async (
-    id: string,
-    body: RegistrationCreate
-  ): Promise<HttpResponse<boolean>> => {
+  execute = async (id: string, body: Body): Promise<HttpResponse<boolean>> => {
     const [course, student] = await Promise.all([
       this._courseRepository.get(id),
       this._studentRepository.get(body.alunoId),
