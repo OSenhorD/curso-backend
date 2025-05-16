@@ -66,9 +66,7 @@ export class CourseRepository implements ICourseRepository {
         .getRawOne();
 
       if (typeof item === 'undefined') {
-        return {
-          data: null,
-        };
+        throw new Error('Not found');
       }
 
       return {

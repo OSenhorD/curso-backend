@@ -68,9 +68,7 @@ export class StudentRepository implements IStudentRepository {
         .getRawOne();
 
       if (typeof item === 'undefined') {
-        return {
-          data: null,
-        };
+        throw new Error('Not found');
       }
 
       return {
