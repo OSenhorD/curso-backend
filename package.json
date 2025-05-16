@@ -6,6 +6,14 @@
   "author": "David Marques",
   "main": "./dist/shared/infra/http/server.js",
   "description": "Backend da aplicação Ever Tickets",
+  "homepage": "https://github.com/OSenhorD/curso-backend#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OSenhorD/curso-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OSenhorD/curso-backend/issues"
+  },
   "engines": {
     "npm": "10.9.2",
     "node": "22.13.1"

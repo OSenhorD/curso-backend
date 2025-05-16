@@ -1,11 +1,12 @@
 # Curso Backend
 
-Aplicação teste para demonstrar conhecimento básicos
+Aplicação teste para demonstrar conhecimentos básicos
 
 ## Tecnologias
 
 - Banco de dados PostegreSQL
-- ORM TypeORM.
+- ORM TypeORM
+- Docker
 
 ## Instalar e executar projeto
 
