@@ -16,7 +16,9 @@ export interface IRegistrationRepository {
     search: Search
   ): Promise<Result<RegistrationGet[]>>;
 
-  create(item: Omit<RegistrationDTO, 'id'>): Promise<Result<RegistrationDTO>>;
+  create(
+    item: Omit<RegistrationDTO, 'id' | 'dataMatricula'>
+  ): Promise<Result<RegistrationDTO>>;
 
   delete(id: string): Promise<Result>;
 }

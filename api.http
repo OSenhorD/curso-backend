@@ -50,7 +50,7 @@ POST {{ url }}{{ api }}/database/course/{{ course_id }}/enroll HTTP/1.1
 Content-type: application/json
 
 {
-  "aluno_id": ""
+  "aluno_id": "e5ee568e-8a62-4c7e-b816-601a70e8a503"
 }
 
 ###

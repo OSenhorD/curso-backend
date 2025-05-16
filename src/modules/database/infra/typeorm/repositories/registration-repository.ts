@@ -17,7 +17,7 @@ export class RegistrationRepository implements IRegistrationRepository {
 
   listByCourseId = async (
     courseId: string,
-    search: Search
+    { page, pageSize, search }: Search
   ): Promise<Result<RegistrationGet[]>> => {
     try {
       let query = this._repository
@@ -47,9 +47,7 @@ export class RegistrationRepository implements IRegistrationRepository {
       const count = await query.getCount();
 
       query = query.addOrderBy('student.nome', 'ASC');
-      query = query
-        .offset(search.pageSize * search.page)
-        .limit(search.pageSize);
+      query = query.offset(pageSize * page).limit(pageSize);
 
       const items = await query.getRawMany();
 
@@ -65,7 +63,7 @@ export class RegistrationRepository implements IRegistrationRepository {
 
   listByStudentId = async (
     studentId: string,
-    search: Search
+    { page, pageSize, search }: Search
   ): Promise<Result<RegistrationGet[]>> => {
     try {
       let query = this._repository
@@ -95,9 +93,7 @@ export class RegistrationRepository implements IRegistrationRepository {
       const count = await query.getCount();
 
       query = query.addOrderBy('course.nome', 'ASC');
-      query = query
-        .offset(search.pageSize * search.page)
-        .limit(search.pageSize);
+      query = query.offset(pageSize * page).limit(pageSize);
 
       const items = await query.getRawMany();
 

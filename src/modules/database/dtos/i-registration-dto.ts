@@ -13,3 +13,7 @@ export type RegistrationGet = {
   alunoEmail: string;
   dataMatricula: string;
 };
+
+export type RegistrationCreate = {
+  alunoId: string;
+};
